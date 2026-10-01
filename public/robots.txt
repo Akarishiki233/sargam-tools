@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://akarishiki233.github.io/sargam-tools/sitemap.xml
