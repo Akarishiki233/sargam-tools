@@ -82,12 +82,15 @@ r = run(
         "node",
         "--input-type=module",
         "-e",
-        "import('./src/lib/tool-pages.js').then(m => console.log(JSON.stringify("
-        "['/', '/hi/'].concat(m.allToolPages().map(p => p.path)))))",
+        "Promise.all([import('./src/lib/tool-pages.js'), import('./src/lib/songs.js')])"
+        ".then(([tp, sg]) => console.log(JSON.stringify("
+        "['/', '/hi/', '/songs/', '/hi/songs/']"
+        ".concat(tp.allToolPages().map(p => p.path))"
+        ".concat(sg.allSongPages().map(p => p.path)))))",
     ]
 )
 routes = json.loads(r.stdout)
-check(isinstance(routes, list) and len(routes) == 10, f"10 routes total (got {len(routes)})")
+check(isinstance(routes, list) and len(routes) == 18, f"18 routes total (got {len(routes)})")
 
 
 def dist_for(route):
@@ -228,6 +231,38 @@ if token:
               f"{rt}: GSC verification meta present")
 else:
     print("  (token not configured yet — skipping, not a failure)")
+
+# ---------- §11 song catalogue completeness ----------
+print("§11 songs…")
+r = run(
+    [
+        "node",
+        "--input-type=module",
+        "-e",
+        "import {SONGS} from './src/lib/songs.js';"
+        "const bad = [];"
+        "for (const s of SONGS) {"
+        "  for (const f of ['title','subtitle','scale','taal'])"
+        "    for (const l of ['en','hi'])"
+        "      if (!s[f] || !s[f][l] || !s[f][l].trim()) bad.push(s.id+':'+f+'.'+l);"
+        "  if (!s.lines || !s.lines.length) bad.push(s.id+':no lines');"
+        "  for (const [i,ln] of (s.lines||[]).entries()) {"
+        "    for (const l of ['en','hi'])"
+        "      if (!ln.lyric || !ln.lyric[l] || !ln.lyric[l].trim()) bad.push(s.id+':line'+i+'.lyric.'+l);"
+        "    if (!ln.notes || !ln.notes.trim()) bad.push(s.id+':line'+i+'.notes');"
+        "    const toks = ln.notes.split(' ').filter(t=>t && t!=='|');"
+        "    if (toks.length === 0) bad.push(s.id+':line'+i+'.empty');"
+        "  }"
+        "  if (!s.sources || s.sources.length < 2) bad.push(s.id+':<2 sources');"
+        "  for (const src of (s.sources||[]))"
+        "    if (!src.url || !src.url.startsWith('http')) bad.push(s.id+':bad source url');"
+        "}"
+        "console.log(JSON.stringify({count: SONGS.length, bad}));",
+    ]
+)
+d = json.loads(r.stdout)
+check(d["count"] >= 3, f">=3 songs in catalogue (got {d['count']})")
+check(not d["bad"], f"song content complete en+hi: {d['bad'][:5]}")
 
 print(f"\nselftest: {passed} passed, {len(failed)} failed")
 sys.exit(1 if failed else 0)

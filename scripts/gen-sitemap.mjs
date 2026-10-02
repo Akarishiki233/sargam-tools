@@ -4,6 +4,7 @@ import { writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import { allToolPages } from '../src/lib/tool-pages.js'
+import { allSongPages } from '../src/lib/songs.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const SITE = 'https://akarishiki233.github.io/sargam-tools'
@@ -12,9 +13,14 @@ const TODAY = new Date().toISOString().slice(0, 10)
 const urls = [
   { loc: '/', priority: '1.0', changefreq: 'weekly' },
   { loc: '/hi/', priority: '0.9', changefreq: 'weekly' },
+  { loc: '/songs/', priority: '0.9', changefreq: 'weekly' },
+  { loc: '/hi/songs/', priority: '0.8', changefreq: 'weekly' },
 ]
 for (const p of allToolPages()) {
   urls.push({ loc: p.path, priority: '0.8', changefreq: 'monthly' })
+}
+for (const p of allSongPages()) {
+  urls.push({ loc: p.path, priority: '0.9', changefreq: 'monthly' })
 }
 
 const xml =

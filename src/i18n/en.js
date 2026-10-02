@@ -7,6 +7,7 @@ export default {
   nav: {
     home: 'Home',
     tools: 'Tools',
+    songs: 'Songs',
   },
   home: {
     title: 'Sargam Tools — Free Online Harmonium, Taal Metronome & Sargam Notes',
@@ -193,6 +194,127 @@ export default {
         {
           q: 'Can I transpose a song to another key?',
           a: 'Yes — that is what the Sa selector does. Convert with Sa = C, then convert back with Sa = D, and the whole melody moves up a whole step.',
+        },
+      ],
+    },
+  },
+  songs_ui: {
+    index_title: 'Sargam Song Notes — Bhajans & Patriotic Songs | Sargam Tools',
+    index_description:
+      'Learn beloved Indian songs on harmonium with line-by-line sargam notes: Vaishnav Jan To, Raghupati Raghav, Sare Jahan Se Achha. Free, with playing tips and sources.',
+    index_heading: 'Song notes',
+    index_sub:
+      'Line-by-line sargam for songs everyone knows — compiled from published notations, with the tricky swaras marked and honest notes where sources disagree.',
+    lines_title: 'Sargam notes',
+    legend_title: 'How to read the notation',
+    legend: [
+      { s: 'S R G m P D N', d: 'Shuddh (natural) swaras — Sa Re Ga Ma Pa Dha Ni.' },
+      { s: 'r g d n (lowercase)', d: 'Komal (flat) swaras. A lone M means tivra (sharp) Ma.' },
+      { s: ".N   S'", d: 'Dot before = lower octave (mandra); apostrophe after = higher octave (taar).' },
+      { s: '(x)  ~  { }', d: 'Kann (grace touch), meend (glide), murki (quick ornament) — play them lightly.' },
+      { s: '|', d: 'Bar line — a phrasing/breathing mark, not a strict beat.' },
+    ],
+    how_title: 'How to play it',
+    variant_title: 'About this version',
+    sources_title: 'Sources',
+    sources_note:
+      'Notation compiled from the published sources below. Where they disagree, the difference is noted on this page — nothing here is invented.',
+    scale_label: 'Scale',
+    taal_label: 'Taal',
+    practice_cta: 'Practice on the online harmonium',
+    more_songs: 'More song notes',
+  },
+  songs: {
+    'raghupati-raghav': {
+      seo_title: 'Raghupati Raghav Sargam Notes — Play on Harmonium | Sargam Tools',
+      seo_description:
+        'Learn Raghupati Raghav Raja Ram on harmonium with line-by-line sargam notes, komal swaras marked, and playing tips. Free, no signup.',
+      how: [
+        'Set any comfortable Sa on the harmonium — this version (notesandsargam.com) uses only the middle octave, so there are no low or high notes to worry about.',
+        'Play the opening "Raghupati Raghav" slowly. The (r) is a kann — just touch komal Re lightly before the Sa, not a full note.',
+        'Watch the komal Ga in "Patita Pavan" — it gives the line its colour. The {M G R S} is a murki: ripple through M G R S very fast without pausing.',
+        'The "Bhaj Pyare" line climbs to Pa. Keep the (d) as a light kann (grace touch), not a full note.',
+      ],
+      variant_note:
+        'The source notates the middle section with the words "Sitaram, Sitaram" — the commonly sung words there are "Ishwar Allah tero naam / Sabko sanmati de Bhagwan", which fit the same melody and meter. Published versions also differ on a few swaras: notationsworld.com prints a lower-octave variant with komal Ni and komal Ga in places (e.g. komal Ni in "Raja Ram", where the version here uses shuddh Ni). This page follows notesandsargam.com — follow the version your teacher or local tradition uses.',
+      faq: [
+        {
+          q: 'What scale should I play Raghupati Raghav in?',
+          a: 'Any scale you like — the notation is relative to Sa. Most beginners start with Sa = C. Set the same Sa on our online harmonium and follow the notes.',
+        },
+        {
+          q: 'Why does this page say "Sitaram" where I sing "Ishwar Allah tero naam"?',
+          a: 'The source we follow notates the "Sitaram" refrain for that section. The widely sung words "Ishwar Allah tero naam / Sabko sanmati de Bhagwan" fit the same notes and meter — sing them over this melody.',
+        },
+        {
+          q: 'Why does another website show different notes for this song?',
+          a: 'Folk-devotional tunes like this dhun travel by oral tradition, so published notations disagree on a few swaras — usually komal vs shuddh Ni or Ga, and the octave they sit in. Learn one consistent version first.',
+        },
+        {
+          q: 'Which taal suits this dhun?',
+          a: 'Keherwa, the 8-beat cycle, is the taal most commonly played with this dhun. Try it on our taal metronome while you practice the melody.',
+        },
+      ],
+    },
+    'vaishnav-jan-to': {
+      seo_title: 'Vaishnav Jan To Sargam Notes — Harmonium Bhajan | Sargam Tools',
+      seo_description:
+        'Play Vaishnav Jan To on harmonium with complete line-by-line sargam notes (scale C#), komal Ni marked, and practice tips. Free, no signup.',
+      how: [
+        'Set Sa = C# on the harmonium (or transpose everything to your Sa — the relationships between notes stay the same).',
+        'The mukhda (first two lines) is the heart of the bhajan — master it before touching the antara. Note the only komal swar in the whole piece: n (komal Ni).',
+        "The 'jaane re' cadence touches high Sa (S') and floats back down. Keep it soft — this is a prayer, not a performance piece.",
+        'The antara (lines 5–8) climbs to high Sa. Keep your hand relaxed and let the drone-like repetition settle in.',
+      ],
+      variant_note:
+        "This page follows onlinesangeet.com's complete version (scale C#). A second published version (bansuritabla.com) notates the same melody with a lower, simpler octave layout. One engraving quirk to know: in the 'jaane re' cadence the source prints Ni without the (k) komal mark it uses for every other Ni in the piece — its own vikrit list names komal Ni as the piece's only flat note. Most singers sing komal Ni there; we transcribe what is printed.",
+      faq: [
+        {
+          q: 'What is the scale of Vaishnav Jan To?',
+          a: "The published notation uses C# as Sa, with komal Ni as the only flat note. If C# feels uncomfortable, transpose the whole piece to your Sa — the note relationships don't change.",
+        },
+        {
+          q: 'Is this bhajan suitable for beginners?',
+          a: 'Yes — the mukhda uses just a handful of notes (S G M P D with one komal Ni). It is one of the best first bhajans for harmonium learners.',
+        },
+        {
+          q: 'What does (P) in the notation mean?',
+          a: 'A kann — a grace-note touch of Pa before the main note, not a full beat. Play it very lightly.',
+        },
+        {
+          q: 'Can I sing it in a different scale?',
+          a: 'Absolutely. Sargam notation is relative: keep Sa wherever your voice sits comfortably and shift every note by the same amount.',
+        },
+      ],
+    },
+    'sare-jahan-se-achha': {
+      seo_title: 'Sare Jahan Se Achha Sargam Notes — Harmonium | Sargam Tools',
+      seo_description:
+        'Learn Sare Jahan Se Achha on harmonium with line-by-line sargam notes, komal Ga and Ni marked, and playing tips. Free, no signup.',
+      how: [
+        "Set Sa = C on the harmonium. The opening line starts on komal Ga — that flat third is the signature of this tune; don't 'correct' it to shuddh.",
+        'Learn the mukhda (first four lines) first — it is the part everyone knows, and the notation is the most consistent across sources there.',
+        "The antara sections move faster. Practice each line at half speed before joining the lines together. The 'Sare jahan se achha' refrain (line 1) returns after every section — learn it once and you know the chorus.",
+        "The 'Hindi hai hum' refrain sits on high Sa (S') — lift your hand position for those four notes, then come back down for 'Watan hai Hindostan'.",
+      ],
+      variant_note:
+        "This page follows notationiq.com's piano arrangement (Sa = C): komal Ga, natural (shuddh) Ni. A second published version (bhmurali.com) notates the same song with shuddh Ga and komal Ni — the two sources genuinely disagree on both swaras, so neither is the single 'correct' version. Three further published arrangements (scribd, pixseries) agree with this page: komal Ga, shuddh Ni. If a line feels too high, drop that phrase one octave; the melody stays intact.",
+      faq: [
+        {
+          q: 'Is the opening Ga komal or shuddh?',
+          a: "Komal — three published sources notate 'Sare jahan se achha' starting on flat Ga. One simplified arrangement uses shuddh Ga, but the widely sung version is komal.",
+        },
+        {
+          q: 'What scale is this notation in?',
+          a: 'Sa = C, with komal Ga and shuddh (natural) Ni. Transpose freely to your own Sa.',
+        },
+        {
+          q: 'Can beginners play the antara?',
+          a: 'The antara moves faster and wider. Learn the mukhda first, then take the antara line by line — or start with a simplified version and graduate to this one.',
+        },
+        {
+          q: 'Does this work on piano or flute too?',
+          a: 'Yes. Sargam maps directly to keys or fingerings — set Sa = C and read the notes as scale degrees.',
         },
       ],
     },

@@ -5,12 +5,16 @@ import { useRoute, RouterLink } from 'vue-router'
 import { useHead } from '@vueuse/head'
 import FaqSection from '../components/FaqSection.vue'
 import { TOOLS } from '../lib/tool-pages.js'
+import { SONGS } from '../lib/songs.js'
 import { SITE, localeFromPath } from '../lib/seo.js'
 
 const { t, tm } = useI18n()
 const route = useRoute()
 const locale = computed(() => localeFromPath(route.path))
 const toolPath = (id) => (locale.value === 'hi' ? `/hi/${id}/` : `/${id}/`)
+const songPath = (id) => (locale.value === 'hi' ? `/hi/songs/${id}/` : `/songs/${id}/`)
+const songsIndexPath = computed(() => (locale.value === 'hi' ? '/hi/songs/' : '/songs/'))
+const L = (obj) => obj[locale.value]
 const why = computed(() => tm('home.why'))
 
 const ICONS = {
@@ -73,6 +77,23 @@ useHead({
       </RouterLink>
     </div>
 
+    <h2 class="section-title">
+      {{ t('songs_ui.index_heading') }}
+      <RouterLink :to="songsIndexPath" class="see-all">→</RouterLink>
+    </h2>
+    <div class="tool-grid">
+      <RouterLink
+        v-for="s in SONGS"
+        :key="s.id"
+        :to="songPath(s.id)"
+        class="card tool-card"
+      >
+        <span class="tool-icon">🎵</span>
+        <h3>{{ L(s.title) }}</h3>
+        <p>{{ L(s.subtitle) }}</p>
+      </RouterLink>
+    </div>
+
     <div v-reveal class="card">
       <h2>{{ t('home.why_title') }}</h2>
       <div v-for="(w, i) in why" :key="i" class="why-item">
@@ -94,6 +115,7 @@ useHead({
 .hero h1 { font-size: clamp(1.7rem, 4.5vw, 2.6rem); margin: 0 0 0.7rem; letter-spacing: -0.02em; }
 .lede { font-size: 1.08rem; color: var(--muted, #8a7a5f); max-width: 36rem; margin: 0 auto; line-height: 1.7; }
 .section-title { margin: 2.2rem 0 1rem; font-size: 1.4rem; }
+.see-all { color: #b3541e; text-decoration: none; font-size: 1.1rem; margin-left: 0.4rem; }
 .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
 .tool-card { text-decoration: none; color: inherit; transition: transform 0.15s; display: block; }
 .tool-card:hover { transform: translateY(-3px); }

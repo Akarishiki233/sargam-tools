@@ -10,6 +10,7 @@ const route = useRoute()
 const { t } = useI18n()
 const locale = computed(() => localeFromPath(route.path))
 const homePath = computed(() => (locale.value === 'hi' ? '/hi/' : '/'))
+const songsPath = computed(() => (locale.value === 'hi' ? '/hi/songs/' : '/songs/'))
 const otherPath = (code) => toLocalePath(route.path, code)
 
 // Google Search Console verification (HTML tag method).
@@ -24,7 +25,10 @@ useHead({
 <template>
   <div class="wrap">
     <header class="site-head">
-      <RouterLink :to="homePath" class="brand">{{ t('site.name') }}</RouterLink>
+      <div class="brand-row">
+        <RouterLink :to="homePath" class="brand">{{ t('site.name') }}</RouterLink>
+        <RouterLink :to="songsPath" class="nav-link">{{ t('nav.songs') }}</RouterLink>
+      </div>
       <nav class="lang-switch" aria-label="Language">
         <RouterLink :to="otherPath('en')" :class="{ active: locale === 'en' }">EN</RouterLink>
         <RouterLink :to="otherPath('hi')" :class="{ active: locale === 'hi' }">हिन्दी</RouterLink>
@@ -51,6 +55,11 @@ useHead({
   text-decoration: none;
   letter-spacing: -0.01em;
 }
+.brand-row { display: flex; align-items: baseline; gap: 1.1rem; }
+.nav-link {
+  font-size: 0.95rem; font-weight: 700; color: #b3541e; text-decoration: none;
+}
+.nav-link:hover { text-decoration: underline; }
 .site-foot {
   margin-top: 3rem;
   padding: 1.5rem 0 2rem;
