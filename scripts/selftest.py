@@ -216,5 +216,18 @@ css = "".join(p.read_text(encoding="utf-8") for p in (ROOT / "dist" / "assets").
 # octave stepper) would shrink every segmented button site-wide.
 check(".segrow button{width:" not in css.replace(" ", ""), "no fixed width on .segrow button")
 
+# ---------- §10 Search Console verification ----------
+print("§10 GSC verification…")
+m = re.search(r"GOOGLE_SITE_VERIFICATION\s*=\s*['\"]([^'\"]*)['\"]",
+              (ROOT / "src" / "lib" / "site.js").read_text(encoding="utf-8"))
+token = m.group(1) if m else ""
+if token:
+    for rt in routes:
+        html = dist_for(rt).read_text(encoding="utf-8")
+        check(f'name="google-site-verification"' in html and token in html,
+              f"{rt}: GSC verification meta present")
+else:
+    print("  (token not configured yet — skipping, not a failure)")
+
 print(f"\nselftest: {passed} passed, {len(failed)} failed")
 sys.exit(1 if failed else 0)

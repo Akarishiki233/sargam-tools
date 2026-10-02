@@ -2,13 +2,23 @@
 import { computed } from 'vue'
 import { RouterView, RouterLink, useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '@vueuse/head'
 import { localeFromPath, toLocalePath } from './lib/seo.js'
+import { GOOGLE_SITE_VERIFICATION } from './lib/site.js'
 
 const route = useRoute()
 const { t } = useI18n()
 const locale = computed(() => localeFromPath(route.path))
 const homePath = computed(() => (locale.value === 'hi' ? '/hi/' : '/'))
 const otherPath = (code) => toLocalePath(route.path, code)
+
+// Google Search Console verification (HTML tag method).
+// Rendered on every page only when the token is configured in lib/site.js.
+useHead({
+  meta: GOOGLE_SITE_VERIFICATION
+    ? [{ name: 'google-site-verification', content: GOOGLE_SITE_VERIFICATION }]
+    : [],
+})
 </script>
 
 <template>
